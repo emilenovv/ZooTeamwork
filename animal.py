@@ -1,4 +1,5 @@
 import random
+from zoo import Zoo
 
 
 class Animal:
@@ -15,8 +16,12 @@ class Animal:
         self.weight += weight
         self.age += ages
 
-    def eat(self, kg):
+    def eat(self, food, kg):
         self.weight += kg / 4
+        if food == "meat":
+            Zoo().available_meat -= kg
+        else:
+            Zoo().available_grass -= kg
 
     def die(self, life_expectancy):
         chance_of_dying = self.age / life_expectancy
