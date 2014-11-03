@@ -20,10 +20,10 @@ class Animal:
 
     def die(self, life_expectancy):
         chance_of_dying = self.age / life_expectancy
-        random_number = random.random
+        random_number = random.random()
         if random_number > chance_of_dying:
             return True
         else:
             return False
 
-    
+
