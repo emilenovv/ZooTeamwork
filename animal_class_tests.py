@@ -20,7 +20,7 @@ class AnimalTests(unittest.TestCase):
 
     def test_eat(self):
         self.animal.eat(4)
-        self.asserGreater(self.animal.weight, 12)
+        self.assertGreater(self.animal.weight, 12)
 
     def test_die(self):
         died_or_not = []
