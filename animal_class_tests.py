@@ -2,7 +2,7 @@ import unittest
 from animal import Animal
 
 
-class AnimalTests:
+class AnimalTests(unittest.TestCase):
     def setUp(self):
         self.animal = Animal("tiger", 12, "DiviaLud", "male", 300)
 
@@ -25,9 +25,10 @@ class AnimalTests:
     def test_die(self):
         died_or_not = []
         for i in range(100):
-            died_or_not.append(self.animal.die())
+            died_or_not.append(self.animal.die(15))
         self.assertIn(True, died_or_not)
         self.assertIn(False,died_or_not)
+
 
 
 if __name__ == '__main__':
