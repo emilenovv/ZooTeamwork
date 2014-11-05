@@ -27,7 +27,7 @@ class Animal:
         self.age += ages
 
     def eat(self, food, kg):
-        self.weight += kg / 4
+        self.weight += kg 
         if food == "meat":
             #Zoo().available_meat -= kg
             self.meat_eaten += kg
