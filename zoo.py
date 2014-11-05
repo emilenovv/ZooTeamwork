@@ -1,6 +1,6 @@
 from animal import Animal
 import random
-
+import json
 
 class Zoo:
 
@@ -33,7 +33,7 @@ class Zoo:
 
     def get_income(self):
         animal_brings = 60
-        self.budget += aninmal_brings * len(self.animals)
+        self.budget += animal_brings * len(self.animals)
 
     def outcome(self):
         total_meat = 0

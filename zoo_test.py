@@ -114,6 +114,9 @@ class ZooTest(unittest.TestCase):
         self.assertEqual(self.zoo.reproduce(self.animal4,
                                             self.animal3), "Cannot reproduce. Animals are too young")
 
+    def test_load(self):
+        self.zoo.load()
+
 
 if __name__ == '__main__':
     unittest.main()
