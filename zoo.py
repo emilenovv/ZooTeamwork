@@ -58,6 +58,10 @@ class Zoo:
             return "male"
         return "female"
 
+    def name_baby(self, baby):
+        name = input("You have a newborn {}. Give it a name".format(baby.species))
+        return name
+
     def reproduce(self, animal1, animal2):
         min_age = 24
         cannot_get_pregnant = 6
@@ -69,7 +73,23 @@ class Zoo:
                 animal1.last_pregnancy = animal1.age
             elif animal2.age - animal2.last_pregnancy >= cannot_get_pregnant:
                 animal2.last_pregnancy = animal2.age
-            baby = Animal(animal1.species, 0, None, self.gender_baby(), 1)
+            baby = Animal(animal1.species, 0, None, self.gender_baby(), animal1.newborn_weight)
+            baby.name = self.name_baby(baby)
             return baby
         else:
             return "Cannot reproduce"
+
+    def load(self):
+        infile = open("database.json", "r")
+        data = json.load(infile)
+        for i in range(len(data["Animals"])):
+            self.animals.append(Animal(
+                data["Animals"][i]["species"],
+                data["Animals"][i]["life_expectancy"],
+                data["Animals"][i]["food_type"],
+                data["Animals"][i]["gestation_period"],
+                data["Animals"][i]["newborn_weight"],
+                data["Animals"][i]["average_weight"],
+                data["Animals"][i]["weight_age_ratio"],
+                data["Animals"][i]["food_weight_ratio"],
+                ))
