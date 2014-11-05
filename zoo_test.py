@@ -6,16 +6,16 @@ from animal import Animal
 class ZooTest(unittest.TestCase):
 
     def setUp(self):
-        self.first_animals = [Animal("tiger", 12, "DiviaLud", "male", 300),
-                              Animal("tiger", 8, "Pam", "female", 280),
-                              Animal("panda", 6, "Pom-Pom", "male", 340)]
+        self.first_animals = [Animal("tiger", 144, "DiviaLud", "male", 300),
+                              Animal("tiger", 96, "Pam", "female", 280),
+                              Animal("panda", 72, "Pom-Pom", "male", 340)]
 
         self.zoo = Zoo(self.first_animals, 100, 1200)
 
-        self.animal1 = Animal("panda", 4, "Jully", "female", 350)
-        self.animal2 = Animal("panda", 4, "Lilly", "female", 350)
-        self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
-        self.animal4 = Animal("tiger", 8, "Pam", "female", 280)
+        self.animal1 = Animal("panda", 48, "Jully", "female", 350)
+        self.animal2 = Animal("panda", 48, "Lilly", "female", 350)
+        self.animal3 = Animal("tiger", 144, "DiviaLud", "male", 300)
+        self.animal4 = Animal("tiger", 96, "Pam", "female", 280)
 
     def test_init(self):
         self.assertEqual(self.zoo.animals, self.first_animals)
@@ -28,19 +28,20 @@ class ZooTest(unittest.TestCase):
 
     def test_names_for_species_doesnot_have_such_species(self):
         self.assertEqual(self.zoo.names_for_species(Animal(
-            "horse", 8, "Pam", "female", 280)), [])
+            "horse", 96, "Pam", "female", 280)), [])
 
-    # def test_accomodate(self):
-    #     self.assertTrue(self.zoo.accommodate(self.animal1))
-    #     self.assertIn(self.animal1, self.zoo.animals)
+    def test_accomodate(self):
+        self.assertTrue(self.zoo.accommodate(self.animal1))
+        self.assertIn(self.animal1, self.zoo.animals)
 
-    # def test_accomodate_no_more_space(self):
-    #     zoo1 = Zoo(self.first_animals, 3, 1200)
-    #     self.assertFalse(zoo1.accommodate(self.animal1))
+    def test_accomodate_no_more_space(self):
+        zoo1 = Zoo(self.first_animals, 3, 1200)
+        self.assertEqual(zoo1.accommodate(self.animal1), "No more space!")
 
-    # def test_accomodate_exists_name(self):
-    #     self.assertFalse(self.zoo.accommodate(
-    #         Animal("panda", 4, "Pom-Pom", "female", 350)))
+    def test_accomodate_exists_name(self):
+        animal = Animal("panda", 48, "Pom-Pom", "female", 350)
+        message = "There is such species with the same name. Rename your animal"
+        self.assertEqual(self.zoo.accommodate(animal), message)
 
     def test_get_income(self):
         self.zoo.get_income()
@@ -56,7 +57,7 @@ class ZooTest(unittest.TestCase):
 
     def test_clear_dead_animals_all_died(self):
         for i in range(100):
-            self.zoo.clear_dead_animals(15)
+            self.zoo.clear_dead_animals(180)
         self.assertEqual(self.zoo.animals, [])
 
     def test_gender_baby(self):
@@ -75,7 +76,7 @@ class ZooTest(unittest.TestCase):
                                             self.animal3), "Cannot reproduce")
 
     def test_reproduce_before_six_months(self):
-        self.animal4.last_pregnancy = 4
+        self.animal4.last_pregnancy = 48
         self.assertEqual(self.zoo.reproduce(self.animal1,
                                             self.animal4), "Cannot reproduce")
 
@@ -94,22 +95,22 @@ class ZooTest(unittest.TestCase):
 
     def test_reproduce_first_animal_too_small(self):
         self.animal4.last_pregnancy = 0
-        self.animal3 = Animal("tiger", 1, "DiviaLud", "male", 300)
-        self.animal4 = Animal("tiger", 8, "Pam", "female", 280)
+        self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
+        self.animal4 = Animal("tiger", 96, "Pam", "female", 280)
         self.assertEqual(self.zoo.reproduce(self.animal3,
                                             self.animal4), "Cannot reproduce. Animals are too young")
 
     def test_reproduce_second_animal_too_small(self):
         self.animal4.last_pregnancy = 0
-        self.animal3 = Animal("tiger", 1, "DiviaLud", "male", 300)
-        self.animal4 = Animal("tiger", 8, "Pam", "female", 280)
+        self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
+        self.animal4 = Animal("tiger", 96, "Pam", "female", 280)
         self.assertEqual(self.zoo.reproduce(self.animal4,
                                             self.animal3), "Cannot reproduce. Animals are too young")
 
     def test_reproduce_both_animals_too_small(self):
         self.animal4.last_pregnancy = 0
-        self.animal3 = Animal("tiger", 1, "DiviaLud", "male", 300)
-        self.animal4 = Animal("tiger", 1, "Pam", "female", 280)
+        self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
+        self.animal4 = Animal("tiger", 12, "Pam", "female", 280)
         self.assertEqual(self.zoo.reproduce(self.animal4,
                                             self.animal3), "Cannot reproduce. Animals are too young")
 

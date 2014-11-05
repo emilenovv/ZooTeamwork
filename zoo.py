@@ -8,6 +8,7 @@ class Zoo:
         self.animals = animals
         self.capacity = capacity
         self.budget = budget
+
         #self.available_meat = 300
         #self.available_grass = 200
 
@@ -36,11 +37,13 @@ class Zoo:
     def outcome(self):
         total_meat = 0
         total_grass = 0
+        grass_price = 2
+        meat_price = 4
         for animal in self.animals:
             total_grass += animal.grass_eaten
             total_meat += animal.meat_eaten
 
-        self.budget -= total_grass * 2 + total_meat * 4
+        self.budget -= total_grass * grass_price + total_meat * meat_price
 
     def clear_dead_animals(self, life_expectancy):
         for animal in self.animals:
@@ -55,13 +58,15 @@ class Zoo:
         return "female"
 
     def reproduce(self, animal1, animal2):
-        if animal1.age < 2 or animal2.age < 2:
+        min_age = 24
+        cannot_get_pregnant = 6
+        if animal1.age < min_age or animal2.age < min_age:
             return "Cannot reproduce. Animals are too young"
 
         if animal1.species == animal2.species and animal1.gender != animal2.gender:
             if animal1.gender == "female" and animal1.age - animal1.last_pregnancy >= 6:
                 animal1.last_pregnancy = animal1.age
-            elif animal2.age - animal2.last_pregnancy >= 6:
+            elif animal2.age - animal2.last_pregnancy >= cannot_get_pregnant:
                 animal2.last_pregnancy = animal2.age
             baby = Animal(animal1.species, 0, None, self.gender_baby(), 1)
             return baby
