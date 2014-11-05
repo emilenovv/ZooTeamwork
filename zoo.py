@@ -59,7 +59,7 @@ class Zoo:
         return "female"
 
     def name_baby(self, baby):
-        name = input("You have a newborn {}. Give it a name".format(baby.species))
+        name = input("You have a newborn {}. Give it a name: ".format(baby.species))
         return name
 
     def reproduce(self, animal1, animal2):

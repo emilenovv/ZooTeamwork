@@ -2,21 +2,21 @@
     "Animals":  [
         {
             "species": "tiger",
-            "life expectancy": 15,
-            "food type": "meat",
-            "gestation period": 3,
-            "newborn weight": 1,
-            "average weight": 250,
+            "life_expectancy": 15,
+            "food_type": "meat",
+            "gestation_period": 3,
+            "newborn_weight": 1,
+            "average_weight": 250,
             "weight_age_ratio": 3,
             "food_weight_ratio": 0.07
         },
         {
             "species": "panda",
-            "life expectancy": 20,
-            "food type": "bamboo",
-            "gestation period": 5,
-            "newborn weight": 0.12,
-            "average weight": 100,
+            "life_expectancy": 20,
+            "food_type": "bamboo",
+            "gestation_period": 5,
+            "newborn_weight": 0.12,
+            "average_weight": 100,
             "weight_age_ratio": 4,
             "food_weight_ratio": 0.1
         }
