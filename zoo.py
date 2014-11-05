@@ -1,40 +1,51 @@
 from animal import Animal
 import random
 
+
 class Zoo:
+
     def __init__(self, animals, capacity, budget):
         self.animals = animals
         self.capacity = capacity
         self.budget = budget
-        self.available_meat = 300
-        self.available_grass = 200
+        #self.available_meat = 300
+        #self.available_grass = 200
 
-    def accommodate(self, new_animal):
+    def names_for_species(self, new_animal):
         names_list = []
         for animal in self.animals:
             if animal.species == new_animal.species:
                 names_list.append(animal.name)
-        if len(self.animals) < self.capacity and new_animal.name not in names_list:
-            self.animals.append(animal)
+        return names_list
+
+    def accommodate(self, new_animal):
+        names_list = []
+        names_list = self.names_for_species(new_animal)
+
+        if len(self.animals) == self.capacity:
+            return "No more space!"
         elif new_animal.name not in names_list:
-            print("There is suck species with the same name. Rename your animal")
-        else:
-            pass
+            self.animals.append(new_animal)
+            return True
+        elif new_animal.name in names_list:
+            return "There is such species with the same name. Rename your animal"
 
-    def get_income(self, num_animals):
-        self.budget += 60 * num_animals
+    def get_income(self):
+        self.budget += 60 * len(self.animals)
 
-    def outcome(self, kg_meat, kg_grass):
+    def outcome(self):
         total_meat = 0
         total_grass = 0
         for animal in self.animals:
             total_grass += animal.grass_eaten
             total_meat += animal.meat_eaten
+
         self.budget -= total_grass * 2 + total_meat * 4
 
-    def clear_dead_animals(self):
+    def clear_dead_animals(self, life_expectancy):
         for animal in self.animals:
-            if animal.die() is True:
+    ############## life_expectancy #############
+            if animal.die(life_expectancy) is True:
                 self.animals.remove(animal)
 
     def gender_baby(self):
@@ -44,6 +55,9 @@ class Zoo:
         return "female"
 
     def reproduce(self, animal1, animal2):
+        if animal1.age < 2 or animal2.age < 2:
+            return "Cannot reproduce. Animals are too young"
+
         if animal1.species == animal2.species and animal1.gender != animal2.gender:
             if animal1.gender == "female" and animal1.age - animal1.last_pregnancy >= 6:
                 animal1.last_pregnancy = animal1.age
@@ -53,4 +67,3 @@ class Zoo:
             return baby
         else:
             return "Cannot reproduce"
-

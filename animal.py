@@ -1,5 +1,5 @@
 import random
-from zoo import Zoo
+#from zoo import Zoo
 
 
 class Animal:
@@ -22,10 +22,10 @@ class Animal:
     def eat(self, food, kg):
         self.weight += kg / 4
         if food == "meat":
-            Zoo().available_meat -= kg
+            #Zoo().available_meat -= kg
             self.meat_eaten += kg
         else:
-            Zoo().available_grass -= kg
+            #Zoo().available_grass -= kg
             self.grass_eaten += kg
 
     def die(self, life_expectancy):
@@ -35,4 +35,3 @@ class Animal:
             return True
         else:
             return False
-
