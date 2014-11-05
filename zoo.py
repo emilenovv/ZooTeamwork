@@ -32,7 +32,8 @@ class Zoo:
             return "There is such species with the same name. Rename your animal"
 
     def get_income(self):
-        self.budget += 60 * len(self.animals)
+        animal_brings = 60
+        self.budget += aninmal_brings * len(self.animals)
 
     def outcome(self):
         total_meat = 0
