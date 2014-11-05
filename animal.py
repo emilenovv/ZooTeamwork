@@ -14,6 +14,13 @@ class Animal:
         self.last_pregnancy = None
         self.meat_eaten = 0
         self.grass_eaten = 0
+        self.life_expectancy = 0
+        self.food_type = None
+        self.gestation_period = 0
+        self.newborn_weight = 0
+        self.average_weight = 0
+        self.weight_age_ratio = 0
+        self.food_weight_ratio = 0
 
     def grow(self, ages, weight):
         self.weight += weight
