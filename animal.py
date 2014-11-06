@@ -11,7 +11,7 @@ class Animal:
         self.name = name
         self.gender = gender
         self.weight = weight
-        self.last_pregnancy = None
+        self.last_pregnancy = 0
         self.meat_eaten = 0
         self.grass_eaten = 0
         self.life_expectancy = 0
@@ -26,10 +26,12 @@ class Animal:
         self.weight += weight
         self.age += ages
 
-    def eat(self, food, kg):
-        self.weight += kg 
-        if food == "meat":
+    def eat(self):
+        kg = self.weight * self.food_weight_ratio
+        self.weight += kg
+        if self.food_type == "meat":
             #Zoo().available_meat -= kg
+            
             self.meat_eaten += kg
         else:
             #Zoo().available_grass -= kg
