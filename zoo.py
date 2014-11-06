@@ -33,7 +33,7 @@ class Zoo:
 
     def get_income(self):
         animal_brings = 60
-        self.budget += aninmal_brings * len(self.animals)
+        self.budget += animal_brings * len(self.animals)
 
     def outcome(self):
         total_meat = 0
@@ -62,6 +62,13 @@ class Zoo:
         name = input("You have a newborn {}. Give it a name: ".format(baby.species))
         return name
 
+    def does_name_exist(self, name, animal):
+        names_list = self.names_for_species(animal)
+        if name in names_list:
+            return True
+        else:
+            return False
+
     def reproduce(self, animal1, animal2):
         min_age = 24
         cannot_get_pregnant = 6
@@ -69,12 +76,16 @@ class Zoo:
             return "Cannot reproduce. Animals are too young"
 
         if animal1.species == animal2.species and animal1.gender != animal2.gender:
-            if animal1.gender == "female" and animal1.age - animal1.last_pregnancy >= 6:
+            if animal1.gender == "female" and animal1.age - animal1.last_pregnancy >= cannot_get_pregnant:
                 animal1.last_pregnancy = animal1.age
-            elif animal2.age - animal2.last_pregnancy >= cannot_get_pregnant:
+            elif animal2.gender == "female" and animal2.age - animal2.last_pregnancy >= cannot_get_pregnant:
                 animal2.last_pregnancy = animal2.age
             baby = Animal(animal1.species, 0, None, self.gender_baby(), animal1.newborn_weight)
-            baby.name = self.name_baby(baby)
+            while True:
+                baby.name = self.name_baby(baby)
+                if self.does_name_exist(baby.name, baby) is False:
+                    break
+            self.accommodate(baby)
             return baby
         else:
             return "Cannot reproduce"
@@ -84,6 +95,7 @@ class Zoo:
         data = json.load(infile)
         for i in range(len(data["Animals"])):
             self.animals.append(Animal(
+
                 data["Animals"][i]["species"],
                 data["Animals"][i]["life_expectancy"],
                 data["Animals"][i]["food_type"],
