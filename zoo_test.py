@@ -91,7 +91,7 @@ class ZooTest(unittest.TestCase):
         self.assertNotEqual(self.zoo.reproduce(self.animal4,
                                                self.animal3), "Cannot reproduce")
 
-#####################################################
+####################################################
 
     def test_reproduce_first_animal_too_small(self):
         self.animal4.last_pregnancy = 0
@@ -114,8 +114,20 @@ class ZooTest(unittest.TestCase):
         self.assertEqual(self.zoo.reproduce(self.animal4,
                                             self.animal3), "Cannot reproduce. Animals are too young")
 
+<<<<<<< HEAD
     def test_load(self):
         self.zoo.load()
+=======
+    def test_reproduce_successfully(self):
+        print(len(self.zoo.animals))
+        self.assertEqual(self.zoo.reproduce(self.animal4,
+                                            self.animal3).species, "tiger")
+        self.assertEqual(self.zoo.reproduce(self.animal4,
+                                            self.animal3).newborn_weight, 0)
+        self.assertEqual(self.zoo.reproduce(self.animal4,
+                                            self.animal3).gender, "male")
+        
+>>>>>>> d55ea7452a032d9c6c7cff9b8d668bcf5840a13e
 
 
 if __name__ == '__main__':

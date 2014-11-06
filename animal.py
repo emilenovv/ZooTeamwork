@@ -22,14 +22,20 @@ class Animal:
         self.weight_age_ratio = 0
         self.food_weight_ratio = 0
 
-    def grow(self, ages, weight):
+    def grow(self):
         self.weight += weight
         self.age += ages
 
+<<<<<<< HEAD
     def eat(self):
         kg = self.weight * self.food_weight_ratio
         self.weight += kg
         if self.food_type == "meat":
+=======
+    def eat(self, food, kg):
+        self.weight += kg
+        if food == "meat":
+>>>>>>> d55ea7452a032d9c6c7cff9b8d668bcf5840a13e
             #Zoo().available_meat -= kg
             
             self.meat_eaten += kg
