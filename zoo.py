@@ -1,6 +1,6 @@
 from animal import Animal
 import random
-import json
+
 
 class Zoo:
 
@@ -49,7 +49,7 @@ class Zoo:
     def clear_dead_animals(self, life_expectancy):
         for animal in self.animals:
     ############## life_expectancy #############
-            if animal.die(life_expectancy) is True:
+            if animal.die() is True:
                 self.animals.remove(animal)
 
     def gender_baby(self):
@@ -75,11 +75,12 @@ class Zoo:
         if animal1.age < min_age or animal2.age < min_age:
             return "Cannot reproduce. Animals are too young"
 
+        # Must discuss these changes!
         if animal1.species == animal2.species and animal1.gender != animal2.gender:
             if animal1.gender == "female" and animal1.age - animal1.last_pregnancy >= cannot_get_pregnant:
-                animal1.last_pregnancy = animal1.age
+                animal1.last_pregnancy = animal1.age + animal1.gestation_period
             elif animal2.gender == "female" and animal2.age - animal2.last_pregnancy >= cannot_get_pregnant:
-                animal2.last_pregnancy = animal2.age
+                animal2.last_pregnancy = animal2.age + animal2.gestation_period
             baby = Animal(animal1.species, 0, None, self.gender_baby(), animal1.newborn_weight)
             while True:
                 baby.name = self.name_baby(baby)
@@ -89,18 +90,3 @@ class Zoo:
             return baby
         else:
             return "Cannot reproduce"
-
-    def load(self):
-        infile = open("database.json", "r")
-        data = json.load(infile)
-        for i in range(len(data["Animals"])):
-            self.animals.append(Animal(
-                data["Animals"][i]["species"],
-                data["Animals"][i]["life_expectancy"],
-                data["Animals"][i]["food_type"],
-                data["Animals"][i]["gestation_period"],
-                data["Animals"][i]["newborn_weight"],
-                data["Animals"][i]["average_weight"],
-                data["Animals"][i]["weight_age_ratio"],
-                data["Animals"][i]["food_weight_ratio"],
-                ))

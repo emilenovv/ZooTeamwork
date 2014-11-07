@@ -19,22 +19,29 @@ class Animal(ZooDatabase):
         self.grass_eaten = 0
 
     def grow(self):
-        self.weight += weight
-        self.age += ages
+        self.age += 1
+        if self.weight < self.average_weight:
+            weight_age_ratio_per_day = self.weight_age_ratio / 30
+            self.weight += weight_age_ratio_per_day
 
-    def eat(self):
+    def eat(self, food):
         kg = self.weight * self.food_weight_ratio
         self.weight += kg
-        if self.food_type == "meat":
+        if food == "meat" and self.food_type == food:
             #Zoo().available_meat -= kg
 
             self.meat_eaten += kg
-        else:
+        elif food == "grass" and self.food_type == food:
             #Zoo().available_grass -= kg
             self.grass_eaten += kg
 
-    def die(self, life_expectancy):
-        chance_of_dying = self.age / life_expectancy
+        else:
+            return "I don't eat {}. Give me other food.".format(food)
+
+    def die(self):
+        days_in_year = 365
+        life_expectancy_days = self.life_expectancy * days_in_year
+        chance_of_dying = self.age / life_expectancy_days
         random_number = random.random()
         if random_number > chance_of_dying:
             return True
