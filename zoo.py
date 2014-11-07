@@ -95,7 +95,6 @@ class Zoo:
         data = json.load(infile)
         for i in range(len(data["Animals"])):
             self.animals.append(Animal(
-
                 data["Animals"][i]["species"],
                 data["Animals"][i]["life_expectancy"],
                 data["Animals"][i]["food_type"],
