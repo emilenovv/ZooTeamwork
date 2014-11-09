@@ -48,16 +48,16 @@ class ZooTest(unittest.TestCase):
         self.assertEqual(self.zoo.budget, 1380)
 
     def test_outcome(self):
-        self.first_animals[0].eat("meat", 8)  # tiger
-        self.first_animals[1].eat("meat", 10)  # tiger
-        self.first_animals[2].eat("bamboo", 4)  # panda
-        # 8 * 4 + 10 * 4 + 4 * 2 = 80
+        self.first_animals[0].eat()  # tiger
+        self.first_animals[1].eat()  # tiger
+        self.first_animals[2].eat()  # panda
+        # 21 * 4 + 19.6 * 4 + 34 * 2 = 162.4 + 68 = 230.4
         self.zoo.outcome()
-        self.assertEqual(self.zoo.budget, 1120)
+        self.assertEqual(self.zoo.budget, 969.6)
 
     def test_clear_dead_animals_all_died(self):
         for i in range(100):
-            self.zoo.clear_dead_animals(180)
+            self.zoo.clear_dead_animals()
         self.assertEqual(self.zoo.animals, [])
 
     def test_gender_baby(self):
@@ -67,6 +67,20 @@ class ZooTest(unittest.TestCase):
         self.assertIn("female", genders)
         self.assertIn("male", genders)
 
+    # def test_name_baby(self):
+    #     # "Boo"
+    #     baby = Animal("tiger", 0, None, "female", 1)
+    #     self.assertEqual(self.zoo.name_baby(baby), "Boo")
+
+
+    def test_does_name_exist(self):
+        animal = Animal("tiger", 0, None, "female", 1)
+        name = "Boo"
+        name2 = "Pam"
+        self.assertFalse(self.zoo.does_name_exist(name, animal))
+        self.assertTrue(self.zoo.does_name_exist(name2, animal))
+
+
     def test_reproduce_same_gender(self):
         self.assertEqual(self.zoo.reproduce(self.animal1,
                                             self.animal2), "Cannot reproduce")
@@ -75,54 +89,54 @@ class ZooTest(unittest.TestCase):
         self.assertEqual(self.zoo.reproduce(self.animal1,
                                             self.animal3), "Cannot reproduce")
 
-    def test_reproduce_before_six_months(self):
-        self.animal4.last_pregnancy = 48
-        self.assertEqual(self.zoo.reproduce(self.animal1,
-                                            self.animal4), "Cannot reproduce")
+#     def test_reproduce_before_six_months(self):
+#         self.animal4.last_pregnancy = 48
+#         self.assertEqual(self.zoo.reproduce(self.animal1,
+#                                             self.animal4), "Cannot reproduce")
 
-####################################################
-    def test_reproduce_female_is_second_argument(self):
-        self.animal4.last_pregnancy = 0
-        self.assertNotEqual(self.zoo.reproduce(self.animal3,
-                                               self.animal4), "Cannot reproduce")
+# ####################################################
+#     def test_reproduce_female_is_second_argument(self):
+#         self.animal4.last_pregnancy = 0
+#         self.assertNotEqual(self.zoo.reproduce(self.animal3,
+#                                                self.animal4), "Cannot reproduce")
 
-    def test_reproduce_female_is_first_argument(self):
-        self.animal4.last_pregnancy = 0
-        self.assertNotEqual(self.zoo.reproduce(self.animal4,
-                                               self.animal3), "Cannot reproduce")
+#     def test_reproduce_female_is_first_argument(self):
+#         self.animal4.last_pregnancy = 0
+#         self.assertNotEqual(self.zoo.reproduce(self.animal4,
+#                                                self.animal3), "Cannot reproduce")
 
-####################################################
+# ####################################################
 
-    def test_reproduce_first_animal_too_small(self):
-        self.animal4.last_pregnancy = 0
-        self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
-        self.animal4 = Animal("tiger", 96, "Pam", "female", 280)
-        self.assertEqual(self.zoo.reproduce(self.animal3,
-                                            self.animal4), "Cannot reproduce. Animals are too young")
+#     def test_reproduce_first_animal_too_small(self):
+#         self.animal4.last_pregnancy = 0
+#         self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
+#         self.animal4 = Animal("tiger", 96, "Pam", "female", 280)
+#         self.assertEqual(self.zoo.reproduce(self.animal3,
+#                                             self.animal4), "Cannot reproduce. Animals are too young")
 
-    def test_reproduce_second_animal_too_small(self):
-        self.animal4.last_pregnancy = 0
-        self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
-        self.animal4 = Animal("tiger", 96, "Pam", "female", 280)
-        self.assertEqual(self.zoo.reproduce(self.animal4,
-                                            self.animal3), "Cannot reproduce. Animals are too young")
+#     def test_reproduce_second_animal_too_small(self):
+#         self.animal4.last_pregnancy = 0
+#         self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
+#         self.animal4 = Animal("tiger", 96, "Pam", "female", 280)
+#         self.assertEqual(self.zoo.reproduce(self.animal4,
+#                                             self.animal3), "Cannot reproduce. Animals are too young")
 
-    def test_reproduce_both_animals_too_small(self):
-        self.animal4.last_pregnancy = 0
-        self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
-        self.animal4 = Animal("tiger", 12, "Pam", "female", 280)
-        self.assertEqual(self.zoo.reproduce(self.animal4,
-                                            self.animal3), "Cannot reproduce. Animals are too young")
+#     def test_reproduce_both_animals_too_small(self):
+#         self.animal4.last_pregnancy = 0
+#         self.animal3 = Animal("tiger", 12, "DiviaLud", "male", 300)
+#         self.animal4 = Animal("tiger", 12, "Pam", "female", 280)
+#         self.assertEqual(self.zoo.reproduce(self.animal4,
+#                                             self.animal3), "Cannot reproduce. Animals are too young")
 
 
-    def test_reproduce_successfully(self):
-        print(len(self.zoo.animals))
-        self.assertEqual(self.zoo.reproduce(self.animal4,
-                                            self.animal3).species, "tiger")
-        self.assertEqual(self.zoo.reproduce(self.animal4,
-                                            self.animal3).newborn_weight, 0)
-        self.assertEqual(self.zoo.reproduce(self.animal4,
-                                            self.animal3).gender, "male")
+#     def test_reproduce_successfully(self):
+#         print(len(self.zoo.animals))
+#         self.assertEqual(self.zoo.reproduce(self.animal4,
+#                                             self.animal3).species, "tiger")
+#         self.assertEqual(self.zoo.reproduce(self.animal4,
+#                                             self.animal3).newborn_weight, 0)
+#         self.assertEqual(self.zoo.reproduce(self.animal4,
+#                                             self.animal3).gender, "male")
 
 
 

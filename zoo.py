@@ -9,8 +9,6 @@ class Zoo:
         self.capacity = capacity
         self.budget = budget
 
-        #self.available_meat = 300
-        #self.available_grass = 200
 
     def names_for_species(self, new_animal):
         names_list = []
@@ -46,9 +44,8 @@ class Zoo:
 
         self.budget -= total_grass * grass_price + total_meat * meat_price
 
-    def clear_dead_animals(self, life_expectancy):
+    def clear_dead_animals(self):
         for animal in self.animals:
-    ############## life_expectancy #############
             if animal.die() is True:
                 self.animals.remove(animal)
 

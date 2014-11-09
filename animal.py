@@ -35,7 +35,8 @@ class Animal(ZooDatabase):
         age_in_months = int(self.age)
 
         if self.weight < self.average_weight:
-            weight_age_ratio_per_day = self.weight_age_ratio / Animal.DAYS_IN_MONTH
+            weight_age_ratio_per_day = self.weight_age_ratio / \
+                Animal.DAYS_IN_MONTH
             self.weight += weight_age_ratio_per_day
 
         if self.age < age_in_months + 0.30:
@@ -55,7 +56,7 @@ class Animal(ZooDatabase):
 
     def age_in_days(self):
         months_in_days = int(self.age) * Animal.DAYS_IN_MONTH
-        days_in_age = (self.age - int(self.age))* 100
+        days_in_age = (self.age - int(self.age)) * 100
 
         age_in_months = months_in_days + round(days_in_age)
         return age_in_months
