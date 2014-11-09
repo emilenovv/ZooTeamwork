@@ -19,6 +19,58 @@
             "average_weight": 100,
             "weight_age_ratio": 4,
             "food_weight_ratio": 0.1
+        },
+        {
+            "species": "emperor penguin",
+            "life_expectancy": 20,
+            "food_type": "meat",
+            "gestation_period": 2,
+            "newborn_weight": 0.300,
+            "average_weight": 30,
+            "weight_age_ratio": 3,
+            "food_weight_ratio": 0.06
+        },
+        {
+            "species": "horse",
+            "life_expectancy": 30,
+            "food_type": "grass",
+            "gestation_period": 11,
+            "newborn_weight": 80,
+            "average_weight": 900,
+            "weight_age_ratio": 5,
+            "food_weight_ratio": 0.20
+        },
+        {
+            "species": "dog",
+            "life_expectancy": 10,
+            "food_type": "meat",
+            "gestation_period": 2,
+            "newborn_weight": 0.300,
+            "average_weight": 30,
+            "weight_age_ratio": 1,
+            "food_weight_ratio": 0.35
+        },
+        {
+            "species": "cat",
+            "life_expectancy": 10,
+            "food_type": "meat",
+            "gestation_period": 2,
+            "newborn_weight": 0.150,
+            "average_weight": 6,
+            "weight_age_ratio": 0.2,
+            "food_weight_ratio": 0.03
+        },
+        {
+            "species": "surikat",
+            "life_expectancy": 12,
+            "food_type": "meat",
+            "gestation_period": 2.5,
+            "newborn_weight": 0.015,
+            "average_weight": 0.720,
+            "weight_age_ratio": 0.001,
+            "food_weight_ratio": 0.002
         }
+
+
     ]
 }
