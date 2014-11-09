@@ -15,20 +15,10 @@ class Animal(ZooDatabase):
         self.name = name
         self.gender = gender
         self.weight = weight
-        self.last_pregnancy = 0
+        self.give_birth = 0
         self.meat_eaten = 0
         self.grass_eaten = 0
 
-    # def grow(self):
-    #     age_in_days = self.age * Animal.DAYS_IN_MONTH
-    #     age_in_days += 1
-    #     if self.weight < self.average_weight:
-    #         weight_age_ratio_per_day = self.weight_age_ratio / Animal.DAYS_IN_MONTH
-    #         self.weight += weight_age_ratio_per_day
-    #     if age_in_days % Animal.DAYS_IN_MONTH < 15:
-    #         self.age = age_in_days // 30
-    #     else:
-    #         self.age = (age_in_days // 30) + 1
 
     def grow(self):
         day = 0.01
